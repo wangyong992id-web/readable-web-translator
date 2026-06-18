@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Readable Web Translator Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: #111827;
+        background: #f4f7fb;
+        font: 18px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        width: min(940px, calc(100vw - 32px));
+        margin: 32px auto;
+        display: grid;
+        gap: 22px;
+      }
+
+      header,
+      article,
+      .tweet,
+      .image-card {
+        background: #ffffff;
+        border: 1px solid #dbe3ef;
+        border-radius: 8px;
+      }
+
+      header {
+        padding: 24px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      header p {
+        margin-top: 8px;
+        color: #526071;
+      }
+
+      article,
+      .tweet,
+      .image-card {
+        padding: 24px;
+      }
+
+      article {
+        display: grid;
+        gap: 18px;
+      }
+
+      .tweet {
+        max-width: 680px;
+      }
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      .avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #38bdf8, #7c3aed);
+      }
+
+      .name {
+        font-weight: 800;
+      }
+
+      .handle {
+        color: #64748b;
+      }
+
+      a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+
+      .news-image {
+        width: 100%;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid #dbe3ef;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Readable Web Translator Demo Page</h1>
+        <p>Use this page to capture store screenshots for bilingual, full-page, selection, and image translation modes.</p>
+      </header>
+
+      <section class="tweet">
+        <div class="profile">
+          <div class="avatar"></div>
+          <div>
+            <div class="name">Market Notes</div>
+            <div class="handle">@marketnotes</div>
+          </div>
+        </div>
+        <p data-testid="tweetText">
+          AI infrastructure spending still looks durable because hyperscalers can fund most of the buildout with operating cash flow.
+          <br><br>
+          $NVDA and $AMD remain central to GPU demand, while $GOOGL, $MSFT, and $AMZN are trying to reduce long-term dependency through custom ASIC programs.
+          <br><br>
+          The key risk is not only valuation. It is whether power, networking, and memory supply can scale fast enough without hurting margins.
+        </p>
+      </section>
+
+      <article>
+        <h2>Long-form article sample</h2>
+        <p>
+          The next generation of translation tools should preserve the reading rhythm of the original page. A good bilingual mode should not force every sentence into a noisy block, and a full-page mode should avoid breaking layout or translating code-like terms incorrectly.
+        </p>
+        <p>
+          For finance and technology content, accuracy depends on keeping tickers, company names, monetary amounts, product names, and abbreviations stable. The translation should sound natural, but it must not rewrite uncertainty into certainty.
+        </p>
+        <p>
+          Selection translation is useful when the reader only needs to understand one phrase, one sentence, or one quote. The fastest interaction is to enable the feature once and then translate automatically whenever text is selected.
+        </p>
+      </article>
+
+      <section class="image-card">
+        <img
+          class="news-image"
+          alt="News image with English text"
+          src="https://dummyimage.com/900x360/0f172a/ffffff.png&text=NEWS+BRIEF+-+Cloud+providers+increase+AI+capex+-+Investors+watch+margins%2C+power%2C+memory%2C+and+custom+chips"
+        />
+      </section>
+    </main>
+  </body>
+</html>

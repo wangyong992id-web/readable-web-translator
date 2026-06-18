@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Popup Preview</title>
+    <link rel="stylesheet" href="../src/popup.css" />
+    <style>
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        width: auto;
+        background: #eaf0f8;
+      }
+
+      main {
+        width: 360px;
+        background: #ffffff;
+        border: 1px solid #d8e1ef;
+        border-radius: 10px;
+        box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16);
+      }
+    </style>
+    <script>
+      const previewStore = {
+        textProvider: "deepseek",
+        textApiBaseUrl: "https://api.deepseek.com",
+        textApiKey: "sk-••••••••••••",
+        textModel: "deepseek-chat",
+        imageProvider: "kimi",
+        imageApiBaseUrl: "https://api.moonshot.ai/v1",
+        imageApiKey: "sk-••••••••••••",
+        imageModel: "kimi-k2.6",
+        sourceLanguage: "auto",
+        targetLanguage: "Simplified Chinese",
+        translationStyle: "finance",
+        imageTranslateEnabled: true,
+        selectionTranslateEnabled: true,
+        protectedTerms: "AAOI, LITE, AXTI, ASIC, TPU, GPU, NVIDIA",
+        disabledSites: {}
+      };
+
+      window.chrome = {
+        tabs: {
+          query: async () => [{ url: "https://x.com/aleabitoreddit" }]
+        },
+        runtime: {
+          openOptionsPage: () => {}
+        },
+        storage: {
+          local: {
+            get: async (key) => {
+              if (key === null) return { ...previewStore };
+              if (typeof key === "string") return { [key]: previewStore[key] };
+              if (Array.isArray(key)) return Object.fromEntries(key.map((item) => [item, previewStore[item]]));
+              return { ...key, ...previewStore };
+            },
+            set: async (value) => Object.assign(previewStore, value)
+          }
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <strong>网页翻译</strong>
+        <button id="open-options" class="icon-button" type="button" title="高级设置">设置</button>
+      </header>
+
+      <label class="toggle-row site-row">
+        <span>
+          <strong>当前站点启用</strong>
+          <small id="site-label">正在读取当前网页</small>
+        </span>
+        <input id="site-toggle" type="checkbox" />
+      </label>
+
+      <section class="channel">
+        <h2>文本翻译</h2>
+        <div class="grid-2">
+          <label>
+            <span>服务商</span>
+            <select id="text-provider"></select>
+          </label>
+          <label>
+            <span>模型</span>
+            <select id="text-model"></select>
+          </label>
+        </div>
+        <label>
+          <span>API key</span>
+          <div class="key-row">
+            <input id="text-api-key" type="password" autocomplete="off" placeholder="DeepSeek key" />
+            <button id="save-text-key" type="button">保存</button>
+          </div>
+        </label>
+      </section>
+
+      <section class="channel">
+        <h2>图片翻译</h2>
+        <div class="grid-2">
+          <label>
+            <span>服务商</span>
+            <select id="image-provider"></select>
+          </label>
+          <label>
+            <span>模型</span>
+            <select id="image-model"></select>
+          </label>
+        </div>
+        <label>
+          <span>API key</span>
+          <div class="key-row">
+            <input id="image-api-key" type="password" autocomplete="off" placeholder="Kimi/OpenAI key" />
+            <button id="save-image-key" type="button">保存</button>
+          </div>
+        </label>
+      </section>
+
+      <div class="grid-2">
+        <label>
+          <span>源语言</span>
+          <select id="source-language"></select>
+        </label>
+        <label>
+          <span>目标语言</span>
+          <select id="target-language"></select>
+        </label>
+      </div>
+
+      <label>
+        <span>翻译风格</span>
+        <select id="translation-style"></select>
+      </label>
+
+      <label class="toggle-row">
+        <span>
+          <strong>划词自动翻译</strong>
+          <small>开启后选中文字即翻译</small>
+        </span>
+        <input id="selection-toggle" type="checkbox" />
+      </label>
+
+      <label class="toggle-row">
+        <span>
+          <strong>图片翻译按钮</strong>
+          <small>开启后内容图片上显示译图</small>
+        </span>
+        <input id="image-toggle" type="checkbox" />
+      </label>
+
+      <label>
+        <span>保护词</span>
+        <textarea id="protected-terms" rows="3" placeholder="AAOI, LITE, ASIC, TPU"></textarea>
+      </label>
+
+      <p id="status" role="status"></p>
+    </main>
+    <script src="../src/popup.js"></script>
+  </body>
+</html>

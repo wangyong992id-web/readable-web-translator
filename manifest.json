@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Readable Web Translator",
+  "description": "Bring your own model API token to translate webpages in bilingual or full-page mode without breaking layout.",
+  "version": "0.1.0",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "<all_urls>",
+    "https://api.deepseek.com/*",
+    "https://api.moonshot.ai/*",
+    "https://api.moonshot.cn/*",
+    "https://api.openai.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Readable Web Translator",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_popup": "src/popup.html"
+  },
+  "options_page": "src/options.html"
+}

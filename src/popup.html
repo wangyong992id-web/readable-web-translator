@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Readable Web Translator</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <strong>网页翻译</strong>
+        <button id="open-options" class="icon-button" type="button" title="高级设置">设置</button>
+      </header>
+
+      <label class="toggle-row site-row">
+        <span>
+          <strong>当前站点启用</strong>
+          <small id="site-label">正在读取当前网页</small>
+        </span>
+        <input id="site-toggle" type="checkbox" />
+      </label>
+
+      <section class="channel">
+        <h2>文本翻译</h2>
+        <div class="grid-2">
+          <label>
+            <span>服务商</span>
+            <select id="text-provider"></select>
+          </label>
+          <label>
+            <span>模型</span>
+            <select id="text-model"></select>
+          </label>
+        </div>
+        <label>
+          <span>文本 API key</span>
+          <div class="key-row">
+            <input id="text-api-key" type="password" autocomplete="off" placeholder="DeepSeek key" />
+            <button id="save-text-key" type="button">保存</button>
+            <button id="test-text-key" class="secondary-button" type="button">测试</button>
+          </div>
+        </label>
+      </section>
+
+      <section class="channel">
+        <h2>图片翻译</h2>
+        <div class="grid-2">
+          <label>
+            <span>服务商</span>
+            <select id="image-provider"></select>
+          </label>
+          <label>
+            <span>模型</span>
+            <select id="image-model"></select>
+          </label>
+        </div>
+        <label>
+          <span>图片 API key</span>
+          <div class="key-row">
+            <input id="image-api-key" type="password" autocomplete="off" placeholder="必须匹配图片服务商" />
+            <button id="save-image-key" type="button">保存</button>
+            <button id="test-image-key" class="secondary-button" type="button">测试</button>
+          </div>
+        </label>
+      </section>
+
+      <div class="grid-2">
+        <label>
+          <span>源语言</span>
+          <select id="source-language"></select>
+        </label>
+        <label>
+          <span>目标语言</span>
+          <select id="target-language"></select>
+        </label>
+      </div>
+
+      <label>
+        <span>翻译风格</span>
+        <select id="translation-style"></select>
+      </label>
+
+      <label class="toggle-row">
+        <span>
+          <strong>划词自动翻译</strong>
+          <small>开启后选中文字即翻译</small>
+        </span>
+        <input id="selection-toggle" type="checkbox" />
+      </label>
+
+      <label class="toggle-row">
+        <span>
+          <strong>图片翻译按钮</strong>
+          <small>开启后内容图片上显示译图</small>
+        </span>
+        <input id="image-toggle" type="checkbox" />
+      </label>
+
+      <label>
+        <span>保护词</span>
+        <textarea id="protected-terms" rows="3" placeholder="AAOI, LITE, ASIC, TPU"></textarea>
+      </label>
+
+      <p id="status" role="status"></p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Readable Web Translator 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>翻译设置</h1>
+      <form id="settings-form">
+        <section class="settings-section">
+          <h2>文本翻译通道</h2>
+          <div class="grid">
+            <label>
+              <span>服务商</span>
+              <select name="textProvider" required>
+                <option value="deepseek">DeepSeek</option>
+                <option value="kimi-cn">Kimi / Moonshot 国内站</option>
+                <option value="kimi">Kimi / Moonshot 国际站</option>
+                <option value="openai">OpenAI</option>
+              </select>
+            </label>
+            <label>
+              <span>模型</span>
+              <select name="textModel" required></select>
+            </label>
+          </div>
+          <label>
+            <span>API Base URL</span>
+            <input name="textApiBaseUrl" readonly required />
+          </label>
+          <label>
+            <span>文本 API Token</span>
+            <input name="textApiKey" type="password" autocomplete="off" placeholder="文本翻译 key" required />
+          </label>
+        </section>
+
+        <section class="settings-section">
+          <h2>图片翻译通道</h2>
+          <div class="grid">
+            <label>
+              <span>服务商</span>
+              <select name="imageProvider" required>
+                <option value="deepseek">DeepSeek</option>
+                <option value="kimi-cn">Kimi / Moonshot 国内站</option>
+                <option value="kimi">Kimi / Moonshot 国际站</option>
+                <option value="openai">OpenAI</option>
+              </select>
+            </label>
+            <label>
+              <span>模型</span>
+              <select name="imageModel" required></select>
+            </label>
+          </div>
+          <label>
+            <span>API Base URL</span>
+            <input name="imageApiBaseUrl" readonly required />
+          </label>
+          <label>
+            <span>图片 API Token</span>
+            <input name="imageApiKey" type="password" autocomplete="off" placeholder="必须匹配图片服务商，例如 Kimi key 或 OpenAI key" />
+          </label>
+        </section>
+        <div class="grid">
+          <label>
+            <span>原文语言</span>
+            <select name="sourceLanguage"></select>
+          </label>
+          <label>
+            <span>目标语言</span>
+            <select name="targetLanguage"></select>
+          </label>
+        </div>
+        <label>
+          <span>翻译风格</span>
+          <select name="translationStyle"></select>
+        </label>
+        <section class="settings-section">
+          <h2>交互开关</h2>
+          <label class="checkbox-row">
+            <span>
+              <strong>划词自动翻译</strong>
+              <small>开启后选中文字会自动翻译，关闭后不触发。</small>
+            </span>
+            <input name="selectionTranslateEnabled" type="checkbox" />
+          </label>
+          <label class="checkbox-row">
+            <span>
+              <strong>图片翻译按钮</strong>
+              <small>开启后内容图片上显示译图按钮，关闭后不增强图片。</small>
+            </span>
+            <input name="imageTranslateEnabled" type="checkbox" />
+          </label>
+        </section>
+        <div class="grid">
+          <label>
+            <span>并发数</span>
+            <input name="concurrency" type="number" min="1" max="8" />
+          </label>
+          <label>
+            <span>每批段落数</span>
+            <input name="batchSize" type="number" min="1" max="30" />
+          </label>
+        </div>
+        <label>
+          <span>保护词</span>
+          <textarea name="protectedTerms" rows="4" placeholder="AAOI, LITE, ASIC, TPU"></textarea>
+        </label>
+        <button type="submit">保存设置</button>
+        <p class="note">安全模式已开启：API key 只会发送到上方预设服务商的官方接口地址。</p>
+        <p id="status" role="status"></p>
+      </form>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>

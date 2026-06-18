@@ -1,0 +1,19 @@
+.DS_Store
+*.log
+*.tmp
+*.temp
+
+# Local secrets and environment files
+.env
+.env.*
+*.pem
+*.key
+*.p12
+
+# Dependency/build caches
+node_modules/
+.cache/
+__pycache__/
+
+# macOS archive metadata
+__MACOSX/
